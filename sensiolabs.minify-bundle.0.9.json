@@ -1,0 +1,47 @@
+{
+    "manifests": {
+        "sensiolabs/minify-bundle": {
+            "manifest": {
+                "bundles": {
+                    "Sensiolabs\\MinifyBundle\\SensiolabsMinifyBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "gitignore": [
+                    "/%VAR_DIR%/minify/"
+                ]
+            },
+            "files": {
+                "config/packages/sensiolabs_minify.yaml": {
+                    "contents": [
+                        "sensiolabs_minify:",
+                        "    asset_mapper:",
+                        "        # Exclude already minified assets",
+                        "        ignore_paths:",
+                        "            - '*.min.js'",
+                        "            - '*.min.css'",
+                        "    minify:",
+                        "        # Use local binary if available",
+                        "        # local_binary: 'auto'",
+                        "",
+                        "        # Specify local binary path",
+                        "        # local_binary: '/usr/bin/minify'",
+                        "",
+                        "        # Download binary from GitHub",
+                        "        download_binary: true",
+                        "",
+                        "when@test:",
+                        "    sensiolabs_minify:",
+                        "        asset_mapper: false",
+                        ""
+                    ],
+                    "executable": false
+                }
+            },
+            "ref": "b762016c180efbeff79b7a0eb95db7ec74c8e9d6"
+        }
+    }
+}
